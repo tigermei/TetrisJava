@@ -1,0 +1,11 @@
+# 忽略git相关文件
+
+# 忽略IDE配置文件
+.idea/
+
+# 忽略日志文件`
+logs/
+
+dst/
+.DS_Store
+
