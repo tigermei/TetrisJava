@@ -11,3 +11,5 @@
 *.txt.txt
 *.properties.txt.txt
 *.properties.txt.txt.txt
+*.vscode
+
