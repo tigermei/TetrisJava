@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import java.awt.event.HierarchyEvent;
 
 public class Tetris extends JFrame {
     private static final int WINDOW_WIDTH = 500;
@@ -101,6 +102,15 @@ public class Tetris extends JFrame {
         
         // 使窗口可拖动
         enableWindowDrag(titleBar);
+        
+        // 在创建游戏主面板后添加焦点监听
+        mainPanel.addHierarchyListener(e -> {
+            if ((e.getChangeFlags() & HierarchyEvent.SHOWING_CHANGED) != 0) {
+                if (mainPanel.isShowing()) {
+                    board.requestFocusInWindow();
+                }
+            }
+        });
     }
     
     // 添加窗口拖动功能

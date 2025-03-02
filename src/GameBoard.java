@@ -45,13 +45,27 @@ public class GameBoard extends JPanel {
             @Override
             public void keyPressed(KeyEvent e) {
                 if (!isPaused && !isGameOver) {
-                    switch (e.getKeyCode()) {
-                        case KeyEvent.VK_LEFT -> moveShape(-1);
-                        case KeyEvent.VK_RIGHT -> moveShape(1);
-                        case KeyEvent.VK_DOWN -> dropShape();
-                        case KeyEvent.VK_UP -> rotateShape();
-                        case KeyEvent.VK_SPACE -> dropShapeFully();
+                    int keyCode = e.getKeyCode();
+                    System.out.println("Key pressed: " + keyCode); // 添加调试日志
+                    
+                    switch (keyCode) {
+                        case KeyEvent.VK_LEFT:
+                            moveShape(-1);
+                            break;
+                        case KeyEvent.VK_RIGHT:
+                            moveShape(1);
+                            break;
+                        case KeyEvent.VK_DOWN:
+                            dropShape();
+                            break;
+                        case KeyEvent.VK_UP:
+                            rotateShape();
+                            break;
+                        case KeyEvent.VK_SPACE:
+                            dropShapeFully();
+                            break;
                     }
+                    requestFocusInWindow(); // 确保焦点在游戏面板
                 }
             }
         });
