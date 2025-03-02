@@ -64,7 +64,7 @@ public class Tetris extends JFrame {
         
         // 右侧面板
         JPanel rightPanel = new JPanel(null);
-        rightPanel.setBounds(320, 10, 170, 600);
+        rightPanel.setBounds(320, 10, 200, 600);
         rightPanel.setBackground(new Color(245, 245, 245));
         
         // 预览面板
@@ -143,7 +143,9 @@ public class Tetris extends JFrame {
         panel.setBorder(BorderFactory.createTitledBorder(I18N.getString("controls")));
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.fill = GridBagConstraints.BOTH;
-        gbc.insets = new Insets(5, 5, 5, 5);
+        gbc.weightx = 1.0;
+        gbc.weighty = 0.5;
+        gbc.insets = new Insets(1, 1, 1, 1);
         
         // 创建按钮
         JButton upButton = new JButton(I18N.getString("up"));
@@ -152,13 +154,13 @@ public class Tetris extends JFrame {
         JButton downButton = new JButton(I18N.getString("down"));
         JButton dropButton = new JButton(I18N.getString("drop"));
         
-        // 设置按钮大小
-        Dimension arrowSize = new Dimension(50, 40);
+        // 设置统一按钮尺寸
+        Dimension arrowSize = new Dimension(80, 40);
         upButton.setPreferredSize(arrowSize);
         leftButton.setPreferredSize(arrowSize);
         rightButton.setPreferredSize(arrowSize);
         downButton.setPreferredSize(arrowSize);
-        dropButton.setPreferredSize(new Dimension(150, 40));
+        dropButton.setPreferredSize(new Dimension(160, 40));
         
         // 上按钮
         gbc.gridx = 1;
@@ -182,8 +184,8 @@ public class Tetris extends JFrame {
         // 直接落下按钮
         gbc.gridx = 0;
         gbc.gridy = 2;
-        gbc.gridwidth = 3;  // 跨越3列
-        gbc.insets = new Insets(10, 5, 5, 5);  // 增加上边距
+        gbc.gridwidth = 3;
+        gbc.insets = new Insets(10, 5, 5, 5);
         panel.add(dropButton, gbc);
         
         // 添加事件监听
