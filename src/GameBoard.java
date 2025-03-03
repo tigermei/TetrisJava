@@ -41,14 +41,19 @@ public class GameBoard extends JPanel {
         
         setFocusable(true);
         
+        // 在 GameBoard$1 (KeyListener) 的 keyPressed 方法中添加对游戏结束状态的处理
         addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
-                if (!isPaused && !isGameOver) {
-                    int keyCode = e.getKeyCode();
-                    System.out.println("Key pressed: " + keyCode); // 添加调试日志
-                    
-                    switch (keyCode) {
+                if (isGameOver) {
+                    if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+                        restart();
+                        return;
+                    }
+                }
+                
+                if (!isPaused) {
+                    switch (e.getKeyCode()) {
                         case KeyEvent.VK_LEFT:
                             moveShape(-1);
                             break;
@@ -65,7 +70,10 @@ public class GameBoard extends JPanel {
                             dropShapeFully();
                             break;
                     }
-                    requestFocusInWindow(); // 确保焦点在游戏面板
+                }
+                
+                if (e.getKeyCode() == KeyEvent.VK_P) {
+                    togglePause();
                 }
             }
         });
@@ -384,4 +392,4 @@ public class GameBoard extends JPanel {
         isGameOver = false;
         timer.start();  // 启动游戏计时器
     }
-} 
+}
